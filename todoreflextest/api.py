@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Type
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
@@ -35,5 +35,9 @@ def create_todo(todo: Todo, session: SessionDep) -> Todo:
     session.refresh(todo)
     return todo
 
-# if __name__ == "__main__":
-#     create_db_and_tables()
+@app.get("/todos/{entry_id}")
+def read_entry(entry_id: int, session: SessionDep) -> Todo:
+    entry = session.get(Todo, entry_id)
+    if not entry:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    return entry
