@@ -12,11 +12,11 @@ class Todo(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     priority = Column(Integer, nullable=False, default=1)
-    date_created = Column(DateTime, default=datetime.utcnow)
-    due_by = Column(DateTime, nullable=True)
+
+
 
     def __repr__(self):
-         return f"Todo(id={self.id}, title='{self.title}', priority={self.priority}, due_by={self.due_by})"
+         return f"Todo(id={self.id}, title='{self.title}', priority={self.priority})"
     
 def init_db():
      Base.metadata.create_all(bind=engine)
