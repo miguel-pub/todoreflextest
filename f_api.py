@@ -7,7 +7,7 @@ class Todo(SQLModel, table=True):
     entry: str = Field(index=True)
     priority: int | None = Field(default=1, index=True)
 
-sqlite_file_name = "database.db"
+sqlite_file_name = "todoreflextest/database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
 connect_args = {"check_same_thread": False}
